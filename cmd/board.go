@@ -14,7 +14,7 @@ type Board struct {
 
 // NewFromFile constructs a Board from a file containing board data
 func NewFromFile(filename string) *Board {
-	bytes, err := os.ReadFile(fmt.Sprintf("../../data/%s", filename))
+	bytes, err := os.ReadFile(fmt.Sprintf("../data/%s", filename))
 	if err != nil {
 		panic(err)
 	}
