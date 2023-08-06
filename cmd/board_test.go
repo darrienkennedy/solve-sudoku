@@ -26,7 +26,7 @@ func bytesToString(bytes [9]uint8) string {
 
 // Test_getGroup tests method getGroup of Board
 func Test_getGroup(t *testing.T) {
-	board := NewFromFile("boardTEST")
+	board := NewFromFile("boardTest")
 
 	makeArrayOf := func(num uint8) [9]uint8 {
 		return [9]uint8{
@@ -98,4 +98,25 @@ func Test_getRow(t *testing.T) {
 			}
 		})
 	}
+}
+
+// TestClone tests if the clone method works as expected
+func TestClone(t *testing.T) {
+	board := NewFromFile("boardTest")
+	clone := board.Clone()
+
+	t.Run("0", func(t *testing.T) {
+		eq := board.equals(clone)
+		if !eq {
+			t.Errorf("fail")
+		}
+	})
+
+	board.Set(0, 9)
+	t.Run("1", func(t *testing.T) {
+		eq := board.equals(clone)
+		if eq {
+			t.Errorf("fail")
+		}
+	})
 }

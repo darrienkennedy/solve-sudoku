@@ -147,3 +147,36 @@ func (m *Board) Print() {
 	outbuf += "\n-----------"
 	fmt.Println(outbuf)
 }
+
+// Set will set a value for a given index
+func (m *Board) Set(index int, value uint8) {
+	// TODO: validate arguments
+	m.mu.Lock()
+	defer m.mu.Unlock()
+
+	m.data[index] = uint8(value)
+}
+
+// Get returns a value at a given index
+func (m *Board) Get(index int) uint8 {
+	return m.data[index]
+}
+
+// Clone returns a copy of a board
+func (m *Board) Clone() *Board {
+	res := &Board{
+		data: m.data,
+	}
+	return res
+}
+
+// equals returns a boolean on whether another board is
+// equivalent to the board's data
+func (m *Board) equals(other *Board) bool {
+	for i := 0; i < 81; i++ {
+		if m.data[i] != other.data[i] {
+			return false
+		}
+	}
+	return true
+}
