@@ -1,4 +1,4 @@
-package main
+package solver
 
 import (
 	"fmt"
@@ -14,7 +14,7 @@ type Board struct {
 
 // NewFromFile constructs a Board from a file containing board data
 func NewFromFile(filename string) *Board {
-	bytes, err := os.ReadFile(fmt.Sprintf("../data/%s", filename))
+	bytes, err := os.ReadFile(fmt.Sprintf("/Users/darrien/kd/repos/solve-sudoku/data/%s", filename))
 	if err != nil {
 		panic(err)
 	}
@@ -31,7 +31,7 @@ func NewFromFile(filename string) *Board {
 	return &ret
 }
 
-// getRow returns a row from a Board as an array of bytes
+// getRow returns a row from a Board as an array of bytes.
 func (m *Board) getRow(n int) [9]uint8 {
 	if n < 0 || n > 8 {
 		panic("getRow, bad input: n")
@@ -47,7 +47,7 @@ func (m *Board) getRow(n int) [9]uint8 {
 	return ret
 }
 
-// getCol returns a column from a Board as an array of bytes
+// getCol returns a column from a Board as an array of bytes.
 func (m *Board) getCol(n int) [9]uint8 {
 	if n < 0 || n > 8 {
 		panic("getCol, bad input: n")
@@ -63,7 +63,7 @@ func (m *Board) getCol(n int) [9]uint8 {
 	return ret
 }
 
-// getGroup returns a group from a Board as an array of bytes
+// getGroup returns a group from a Board as an array of bytes.
 func (m *Board) getGroup(n int) [9]uint8 {
 	if n < 0 || n > 8 {
 		panic("getGroup, bad input: n")
@@ -85,7 +85,7 @@ func (m *Board) getGroup(n int) [9]uint8 {
 	return ret
 }
 
-// PrintRow prints a Board row in standard formatting
+// PrintRow prints a Board row in standard formatting.
 func (m *Board) PrintRow(n int) {
 	row := m.getRow(n)
 	var outbuf string
@@ -98,7 +98,7 @@ func (m *Board) PrintRow(n int) {
 	fmt.Println(outbuf)
 }
 
-// PrintCol prints a Board column in standard formatting
+// PrintCol prints a Board column in standard formatting.
 func (m *Board) PrintCol(n int) {
 	col := m.getCol(n)
 	var outbuf string
@@ -112,7 +112,7 @@ func (m *Board) PrintCol(n int) {
 	fmt.Println(outbuf)
 }
 
-// PrintGroup prints a Board group in standard formatting
+// PrintGroup prints a Board group in standard formatting.
 func (m *Board) PrintGroup(n int) {
 	group := m.getGroup(n)
 	var outbuf string
@@ -125,7 +125,7 @@ func (m *Board) PrintGroup(n int) {
 	fmt.Println(outbuf)
 }
 
-// Print prints a Board in standard formatting
+// Print prints a Board in standard formatting.
 func (m *Board) Print() {
 	m.mu.Lock()
 	defer m.mu.Unlock()
@@ -148,7 +148,7 @@ func (m *Board) Print() {
 	fmt.Println(outbuf)
 }
 
-// Set will set a value for a given index
+// Set will set a value for a given index.
 func (m *Board) Set(index int, value uint8) {
 	// TODO: validate arguments
 	m.mu.Lock()
@@ -157,12 +157,12 @@ func (m *Board) Set(index int, value uint8) {
 	m.data[index] = uint8(value)
 }
 
-// Get returns a value at a given index
+// Get returns a value at a given index.
 func (m *Board) Get(index int) uint8 {
 	return m.data[index]
 }
 
-// Clone returns a copy of a board
+// Clone returns a copy of a board.
 func (m *Board) Clone() *Board {
 	res := &Board{
 		data: m.data,
@@ -170,8 +170,7 @@ func (m *Board) Clone() *Board {
 	return res
 }
 
-// equals returns a boolean on whether another board is
-// equivalent to the board's data
+// equals returns a boolean on whether another board is equivalent to the board's data.
 func (m *Board) equals(other *Board) bool {
 	for i := 0; i < 81; i++ {
 		if m.data[i] != other.data[i] {

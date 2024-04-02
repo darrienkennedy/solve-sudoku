@@ -1,7 +1,11 @@
 package main
 
+import (
+	"github.com/darrienkennedy/solve-sudoku/pkg/solver"
+)
+
 func main() {
-	b := NewFromFile("board00")
-	s := NewSolver(b)
+	b := solver.NewFromFile("board00")
+	s := solver.NewSolver(b)
 	s.Print()
 }

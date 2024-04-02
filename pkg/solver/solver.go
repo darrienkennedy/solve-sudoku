@@ -1,4 +1,4 @@
-package main
+package solver
 
 import (
 	"fmt"
@@ -13,7 +13,7 @@ type Solver struct {
 	final    *Board
 }
 
-// NewSolver creates a solver from a *Board
+// NewSolver creates a solver from a *Board.
 func NewSolver(b *Board) *Solver {
 	res := Solver{
 		original: b.Clone(),
@@ -25,7 +25,7 @@ func NewSolver(b *Board) *Solver {
 	return &res
 }
 
-// Print prints the solver
+// Print prints the solver.
 func (m *Solver) Print() {
 	fmt.Printf("st: %d\n", m.step)
 	m.steps[m.step].Print()
