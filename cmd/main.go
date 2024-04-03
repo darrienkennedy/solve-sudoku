@@ -7,5 +7,15 @@ import (
 func main() {
 	b := solver.NewFromFile("board00")
 	s := solver.NewSolver(b)
-	s.Print()
+
+	basecase := 4
+	for !s.IsCompleted() {
+		s.Step()
+		s.Print()
+		basecase -= 1
+
+		if basecase == 0 {
+			break
+		}
+	}
 }
